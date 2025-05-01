@@ -6,7 +6,7 @@
 	<a class="rounded border px-2" href="/">Go Back</a>
 </div>
 
-<main class="m-4">
+<main class="m-4 mb-8">
 	<div class="flex flex-col space-y-4">
 		<div>
 			<h2 class="text-2xl">Total Waste</h2>

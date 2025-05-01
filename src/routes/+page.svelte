@@ -2,7 +2,7 @@
 	import { dogFormState, dogsPerBbq, hotDogArea, humanArea, minutesPerDog } from './state.svelte';
 </script>
 
-<main class="m-4">
+<main class="m-4 mb-8">
 	<h1 class="text-4xl">Your life in hotdogs</h1>
 
 	<div>

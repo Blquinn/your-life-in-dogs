@@ -109,7 +109,7 @@
     </div>
 
     {#if showControls}
-        <div class="flex space-x-2 self-center">
+        <div class="flex flex-col sm:flex-row space-y-2 space-x-2 px-4 self-center">
             <!-- <div>Current scale <span class="font-mono">{(currentTransform?.scale ?? 1).toFixed(3)}</span></div> -->
             <button class="border rounded px-2" onclick={moveToHuman}>Where am I?</button>
             <button class="border rounded px-2" onclick={moveToSomeDogs}>I wanna see one glisten</button>
