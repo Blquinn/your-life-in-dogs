@@ -150,6 +150,7 @@
 	</div>
 
 	{#if showControls}
+		<p class="p-4 text-center">This is the number of hot dogs you need to eat.</p>
 		<div class="mt-4 flex flex-col justify-center space-y-2 space-x-2 px-4 sm:flex-row">
 			<button class="rounded border px-2" onclick={moveToHuman}>Where am I?</button>
 			<button class="rounded border px-2" onclick={() => moveToSomeDogs()}
