@@ -23,16 +23,19 @@
 		requestAnimationFrame(onFrame);
 	}
 
-	const screenWidth = 800;
-	const screenHeight = 600;
+	let viewportWidth = $state(800);
+	let viewportHeight = $state(420);
 
-	const scaleFactor = 6; // px per virtual inch
+	const referenceScaleFactor = 6;
+	const referencePixels = 420 / referenceScaleFactor;
 
-	const dogWidth = hotDogWidth * scaleFactor;
-	const dogHeight = hotDogLength * scaleFactor;
+	let scaleFactor = $derived(viewportHeight / referencePixels);
 
-	const manHeight = humanHeight * scaleFactor;
-	const manWidth = humanWidth * scaleFactor;
+	let dogWidth = $derived(hotDogWidth * scaleFactor);
+	let dogHeight = $derived(hotDogLength * scaleFactor);
+
+	let manHeight = $derived(humanHeight * scaleFactor);
+	let manWidth = $derived(humanWidth * scaleFactor);
 
 	let autodogEnabled = $state(false);
 
@@ -43,7 +46,7 @@
 
 	let dogsPerHour = $derived(dogFormState.state.totalDogs / dogFormState.state.daysLeft / 24);
 	let spawnRate = $derived((dogsPerHour / 60 / 60) * timeMultiplier);
-	let dogVelocity = $derived(autodogEnabled ? (spawnRate * screenWidth) / dogWidth : 400);
+	let dogVelocity = $derived(autodogEnabled ? (spawnRate * viewportWidth) / dogWidth : 400);
 
 	let startTime = new Date();
 	let totalGameTimeElapsed = $state(0.0);
@@ -70,8 +73,8 @@
 
 		const id = nextId();
 		inFlightDogs.set(id, {
-			x: screenWidth + dogWidth,
-			y: screenHeight - dogWidth - (manHeight - 8 * scaleFactor)
+			x: viewportWidth + dogWidth,
+			y: viewportHeight - dogWidth - (manHeight - 8 * scaleFactor)
 		});
 	}
 
@@ -118,9 +121,9 @@
 	<a class="rounded border px-2 py-1" href="/dog-mountain">Go Back</a>
 </div>
 
-<main class="flex flex-col items-center justify-center space-y-4">
+<main class="space-y-4">
 	{#if dogsRemaining > 0}
-		<h2 class="text-2xl">I hope you're hungry</h2>
+		<h2 class="text-center text-2xl">I hope you're hungry</h2>
 
 		<div class="flex flex-col items-center space-y-2">
 			<h3 class="text-xl">dogstat</h3>
@@ -145,18 +148,19 @@
 		</div>
 
 		<div
-			class="relative overflow-hidden border"
-			style={`
-                width: ${screenWidth}px;
-                height: ${screenHeight}px;
-            `}
+			bind:clientWidth={viewportWidth}
+			bind:clientHeight={viewportHeight}
+			class="
+				relative mx-auto aspect-[800/420] w-[90%] overflow-hidden
+				border
+			"
 		>
 			<div
 				style={`
                     position: absolute;
                     width: ${manWidth}px;
                     left: 0px;
-                    top: ${screenHeight - manHeight}px;
+                    top: ${viewportHeight - manHeight}px;
                 `}
 			>
 				<div
@@ -200,15 +204,15 @@
 		</div>
 
 		{#if autodogEnabled}
-			<div class="m-auto">
+			<div class="mx-auto w-9/10 max-w-128">
 				<p>
 					By default, autodog runs in real time. In other words it will spawn hot dogs at a rate of {dogsPerHour.toFixed(
 						3
 					)} per hour.
 				</p>
-				<label for="dog-rate" class="flex items-center space-x-2">
+				<label for="dog-rate" class="flex flex-col items-center space-y-2 space-x-2 sm:flex-row">
 					<input
-						class="w-92"
+						class="w-9/10 max-w-92"
 						type="range"
 						name="dog-rate"
 						id="dog-rate"
@@ -221,12 +225,14 @@
 				</label>
 			</div>
 		{:else}
-			<button class="cursor-pointer rounded border px-8 py-6" onmousedown={spawnDog}
-				>Another one wouldn't hurt</button
-			>
+			<div class="flex items-center">
+				<button class="mx-auto cursor-pointer rounded border px-8 py-6" onmousedown={spawnDog}
+					>Another one wouldn't hurt</button
+				>
+			</div>
 		{/if}
 
-		<label for="autodog" class="flex flex-row items-center space-x-2">
+		<label for="autodog" class="flex flex-row justify-center space-x-2">
 			<input id="autodog" type="checkbox" bind:checked={autodogEnabled} />
 			<span>Enable Autodog</span>
 		</label>
