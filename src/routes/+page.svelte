@@ -72,5 +72,5 @@
 		)}
 	</div>
 
-    <a class="rounded border px-6 py-5" href="/stats">Show me the damage</a>
+	<a class="rounded border px-6 py-5" href="/stats">Show me the damage</a>
 </main>

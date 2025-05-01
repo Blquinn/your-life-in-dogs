@@ -33,16 +33,13 @@
 
 			<div>{dogFormState.state.totalDogs.toFixed()} total</div>
 			<div>
-				{(dogFormState.state.totalDogs / dogFormState.state.yearsLeft).toFixed()} per
-				year
+				{(dogFormState.state.totalDogs / dogFormState.state.yearsLeft).toFixed()} per year
 			</div>
 			<div>
 				{(dogFormState.state.totalDogs / dogFormState.state.daysLeft).toFixed()} per day
 			</div>
 			<div>
-				{(dogFormState.state.totalDogs / dogFormState.state.daysLeft / 16).toFixed(
-					2
-				)} per waking hour
+				{(dogFormState.state.totalDogs / dogFormState.state.daysLeft / 16).toFixed(2)} per waking hour
 			</div>
 		</div>
 
@@ -66,9 +63,9 @@
 
 			<div>{dogFormState.state.totalDogs * hotDogArea} square inches</div>
 
-			<div>{dogFormState.state.totalDogs * hotDogArea / 12} square feet</div>
+			<div>{(dogFormState.state.totalDogs * hotDogArea) / 12} square feet</div>
 
-			<div>{(dogFormState.state.totalDogs * hotDogArea / 12 / 5280).toFixed()} square miles</div>
+			<div>{((dogFormState.state.totalDogs * hotDogArea) / 12 / 5280).toFixed()} square miles</div>
 		</div>
 	</div>
 
