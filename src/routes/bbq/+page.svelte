@@ -121,7 +121,7 @@
 	<a class="rounded border px-2 py-1" href="/dog-mountain">Go Back</a>
 </div>
 
-<main class="space-y-4">
+<main class="space-y-4 touch-manipulation">
 	{#if dogsRemaining > 0}
 		<h2 class="text-center text-2xl">I hope you're hungry</h2>
 
