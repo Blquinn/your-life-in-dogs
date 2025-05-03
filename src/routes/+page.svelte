@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { dogFormState, dogsPerBbq, hotDogArea, humanArea, minutesPerDog } from './state.svelte';
+	import { dogFormState } from './state.svelte';
 </script>
 
 <main class="m-4 mb-8">
@@ -57,20 +57,39 @@
 			</div>
 		{/snippet}
 
-		{@render textInput(
-			'hoursOnPhonePerDay',
-			'Number of hours spent on phone per day (avg screen time)',
-			dogFormState.state.hoursOnPhonePerDay,
-			(v) => dogFormState.updateHoursOnPhonePerDay(parseFloat(v))
-		)}
+		{#each dogFormState.state.entries as entry (entry.id)}
+			<div class="flex flex-row space-x-2">
+				{@render textInput(
+					'activityName',
+					'Activity name',
+					entry.name,
+					(v) => dogFormState.updateEntryName(entry.id, v)
+				)}
+				<div>
+					<label for="hoursSpent" class="block text-sm/6 font-medium">Hours spent</label>
+					<div class="mt-2">
+						<input
+							type="number"
+							step="0.25"
+							name="hoursSpent"
+							id="price"
+							class="rounded"
+							value={entry.hours}
+							onchange={(e) => dogFormState.updateEntryHours(entry.id, parseFloat((e.target as HTMLInputElement).value))}
+						/>
+					</div>
+				</div>
+				<button class="rounded border px-2 py-1 self-end"
+					onclick={() => dogFormState.removeEntry(entry.id)}>Remove</button>
+			</div>
+		{/each}
 
-		{@render textInput(
-			'yearsLeft',
-			'Number of years left to live',
-			dogFormState.state.yearsLeft,
-			(v) => dogFormState.updateYearsLeft(parseFloat(v))
-		)}
+		<button class="rounded border px-2 py-1"
+			onclick={() => dogFormState.addEntry()}
+		>Add Activity</button>
 	</div>
 
-	<a class="rounded border px-6 py-5" href="/stats">Show me the damage</a>
+	<div class="my-16">
+		<a class="rounded border px-6 py-5" href="/stats">Show me the damage</a>
+	</div>
 </main>
