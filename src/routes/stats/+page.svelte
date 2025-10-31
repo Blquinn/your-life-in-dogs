@@ -17,10 +17,10 @@
 			</p>
 
 			<div>
-				<div>{dogFormState.state.totalWaste} minutes</div>
-				<div>{(dogFormState.state.totalWaste / 60).toFixed()} hours</div>
-				<div>{(dogFormState.state.totalWaste / 60 / 24).toFixed()} days</div>
-				<div>{(dogFormState.state.totalWaste / 60 / 24 / 365).toFixed()} years</div>
+				<div>{dogFormState.state.totalWaste.toLocaleString(undefined, {maximumFractionDigits: 0})} minutes</div>
+				<div>{(dogFormState.state.totalWaste / 60).toLocaleString(undefined, {maximumFractionDigits: 0})} hours</div>
+				<div>{(dogFormState.state.totalWaste / 60 / 24).toLocaleString(undefined, {maximumFractionDigits: 0})} days</div>
+				<div>{(dogFormState.state.totalWaste / 60 / 24 / 365).toLocaleString(undefined, {maximumFractionDigits: 0})} years</div>
 			</div>
 		</div>
 
@@ -31,15 +31,15 @@
 				This is the amount of hot dogs you would have to consume to waste the same amount of time.
 			</p>
 
-			<div>{dogFormState.state.totalDogs.toFixed()} total</div>
+			<div>{dogFormState.state.totalDogs.toLocaleString(undefined, {maximumFractionDigits: 2})} total</div>
 			<div>
-				{(dogFormState.state.totalDogs / dogFormState.state.yearsLeft).toFixed()} per year
+				{(dogFormState.state.totalDogs / dogFormState.state.yearsLeft).toLocaleString(undefined, {maximumFractionDigits: 2})} per year
 			</div>
 			<div>
-				{(dogFormState.state.totalDogs / dogFormState.state.daysLeft).toFixed()} per day
+				{(dogFormState.state.totalDogs / dogFormState.state.daysLeft).toLocaleString(undefined, {maximumFractionDigits: 2})} per day
 			</div>
 			<div>
-				{(dogFormState.state.totalDogs / dogFormState.state.daysLeft / 16).toFixed(2)} per waking hour
+				{(dogFormState.state.totalDogs / dogFormState.state.daysLeft / 16).toLocaleString(undefined, {maximumFractionDigits: 2})} per waking hour
 			</div>
 		</div>
 
@@ -47,13 +47,13 @@
 			<h2 class="text-2xl">BBQ Stats</h2>
 
 			<p>
-				This is the number of barbeques you would need to attent over the course of your life in
+				This is the number of barbeques you would need to attend over the course of your life in
 				order to eat all of those hot dogs.
 			</p>
 
-			<div>{dogsPerBbq} Dogs per BBQ</div>
+			<div>{dogsPerBbq.toLocaleString(undefined, {maximumFractionDigits: 0})} Dogs per BBQ</div>
 
-			<div>{dogFormState.state.totalBbqsAttended.toFixed()} BBQs attended</div>
+			<div>{dogFormState.state.totalBbqsAttended.toLocaleString(undefined, {maximumFractionDigits: 0})} BBQs attended</div>
 		</div>
 
 		<div>
@@ -61,11 +61,11 @@
 
 			<p>This is the sum total area of all of the hot dogs you have to eat.</p>
 
-			<div>{dogFormState.state.totalDogs * hotDogArea} square inches</div>
+			<div>{(dogFormState.state.totalDogs * hotDogArea).toLocaleString(undefined, {maximumFractionDigits: 0})} square inches</div>
 
-			<div>{(dogFormState.state.totalDogs * hotDogArea) / 12} square feet</div>
+			<div>{((dogFormState.state.totalDogs * hotDogArea) / 12).toLocaleString(undefined, {maximumFractionDigits: 0})} square feet</div>
 
-			<div>{((dogFormState.state.totalDogs * hotDogArea) / 12 / 5280).toFixed()} square miles</div>
+			<div>{((dogFormState.state.totalDogs * hotDogArea) / 12 / 5280).toLocaleString(undefined, {maximumFractionDigits: 0})} square miles</div>
 		</div>
 	</div>
 

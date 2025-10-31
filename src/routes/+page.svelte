@@ -36,6 +36,8 @@
 	<div class="form my-8 space-y-4">
 		<h2 class="text-2xl">Your information</h2>
 
+		<p class="text-md">You can add any other time wasting activities below.</p>
+
 		{#snippet textInput(
 			name: string,
 			label: string,
